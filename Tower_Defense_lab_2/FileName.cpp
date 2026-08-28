@@ -83,9 +83,9 @@ void initBase(Tower_Main* base) {
 }
 
 // Инициализация счета 
-void initGameManager(GameManager* manage) {
-    manage->gold = 4000;
-    manage->score = 0;
+void initGameManager(GameManager* manager) {
+    manager->gold = 4000;
+    manager->score = 0;
 };
 
 // Инициализация контролера
@@ -114,7 +114,7 @@ int checkCellMap(GameControl* control, Map* map) {
 };
 
 // Вывод id ячейки карты на консоль
-void inputCellMap(GameControl* control, Map* map) {
+void outputCellMap(GameControl* control, Map* map) {
     int id = checkCellMap(control, map);
     if (id == 0)
         printf("This is cell empty\n");
@@ -124,8 +124,8 @@ void inputCellMap(GameControl* control, Map* map) {
         printf("There is a entity on this cell.\n");
 };
 
-// Вывод позиции контролера игрока на консоль
-void inputPos(GameControl* newPos, GameControl* oldPos, GameControl* player) {
+// Перемещение позиции контролера игрока 
+void outputPos(GameControl* newPos, GameControl* oldPos, GameControl* player) {
     int result = checkBorder(newPos);
 
     if (result == 0) {
@@ -270,22 +270,22 @@ void movePlayer(Map* map, GameManager* manager, Tower_Friend* towers, int* tower
         switch (key) {
         case 'W': case 'w':
             newPos.pos_y -= 1;
-            inputPos(&newPos, &oldPos, player);
+            outputPos(&newPos, &oldPos, player);
             break;
         case 'S': case 's':
             newPos.pos_y += 1;
-            inputPos(&newPos, &oldPos, player);
+            outputPos(&newPos, &oldPos, player);
             break;
         case 'A': case 'a':
             newPos.pos_x -= 1;
-            inputPos(&newPos, &oldPos, player);
+            outputPos(&newPos, &oldPos, player);
             break;
         case 'D': case 'd':
             newPos.pos_x += 1;
-            inputPos(&newPos, &oldPos, player);
+            outputPos(&newPos, &oldPos, player);
             break;
         case 'F': case 'f':
-            inputCellMap(&newPos, map);
+            outputCellMap(&newPos, map);
             break;
         case 'I': case 'i':
             outputManager(manager);
