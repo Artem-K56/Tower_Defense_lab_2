@@ -125,7 +125,7 @@ void outputCellMap(GameControl* control, Map* map) {
 };
 
 // Перемещение позиции контролера игрока 
-void outputPos(GameControl* newPos, GameControl* oldPos, GameControl* player) {
+void movePos(GameControl* newPos, GameControl* oldPos, GameControl* player) {
     int result = checkBorder(newPos);
 
     if (result == 0) {
@@ -270,19 +270,19 @@ void movePlayer(Map* map, GameManager* manager, Tower_Friend* towers, int* tower
         switch (key) {
         case 'W': case 'w':
             newPos.pos_y -= 1;
-            outputPos(&newPos, &oldPos, player);
+            movePos(&newPos, &oldPos, player);
             break;
         case 'S': case 's':
             newPos.pos_y += 1;
-            outputPos(&newPos, &oldPos, player);
+            movePos(&newPos, &oldPos, player);
             break;
         case 'A': case 'a':
             newPos.pos_x -= 1;
-            outputPos(&newPos, &oldPos, player);
+            movePos(&newPos, &oldPos, player);
             break;
         case 'D': case 'd':
             newPos.pos_x += 1;
-            outputPos(&newPos, &oldPos, player);
+            movePos(&newPos, &oldPos, player);
             break;
         case 'F': case 'f':
             outputCellMap(&newPos, map);
